@@ -21,6 +21,9 @@ module.exports = {
 		compress: true,
 		static: {
 			directory: fullPath('dist')
+		},
+		client: {
+			overlay: false
 		}
 	},
 	entry: {
