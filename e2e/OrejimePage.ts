@@ -1,6 +1,14 @@
-import {expect, BrowserContext, Page, Locator} from '@playwright/test';
+import {BrowserContext, expect, Page} from '@playwright/test';
 import Cookie from 'js-cookie';
+import {OrejimeInstance} from '../src/setup';
 import {Config} from '../src/ui/types';
+
+declare global {
+	interface Window {
+		orejimeConfig: Partial<Config>;
+		orejime: OrejimeInstance;
+	}
+}
 
 export class OrejimePage {
 	constructor(
@@ -80,6 +88,12 @@ export class OrejimePage {
 		await this.page.getByTestId('orejime-banner-decline').click();
 	}
 
+	async acceptAllFromManager() {
+		return await this.page.evaluate(() => {
+			window.orejime.manager.acceptAll();
+		});
+	}
+
 	async openModalFromBanner() {
 		await this.learnMoreBannerButton.click();
 	}
@@ -119,6 +133,14 @@ export class OrejimePage {
 		await this.page.getByTestId('orejime-contextual-notice-accept').click();
 	}
 
+	async expectUndefinedConsents() {
+		await expect(await this.getConsentsFromCookies()).toBeUndefined();
+	}
+
+	async expectAnyConsents() {
+		await expect(await this.getConsentsFromCookies()).not.toBeUndefined();
+	}
+
 	async expectConsents(consents: Record<string, unknown>) {
 		await expect(await this.getConsentsFromCookies()).toEqual(consents);
 	}
@@ -126,8 +148,19 @@ export class OrejimePage {
 	async getConsentsFromCookies() {
 		const name = 'eu-consent';
 		const cookies = await this.context.cookies();
-		const {value} = cookies.find((cookie) => cookie.name === name)!;
-		return JSON.parse(Cookie.converter.read(value, name));
+		const cookie = cookies.find((cookie) => cookie.name === name)!;
+
+		if (!cookie) {
+			return undefined;
+		}
+
+		return JSON.parse(Cookie.converter.read(cookie.value, cookie.name));
+	}
+
+	async clearConsents() {
+		return await this.page.evaluate(() => {
+			window.orejime.manager.clearConsents();
+		});
 	}
 
 	// In specific conditions, browser events can get queued
