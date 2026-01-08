@@ -37,31 +37,31 @@ export class OrejimePage {
 	}
 
 	get banner() {
-		return this.locator('.orejime-Banner');
+		return this.page.getByTestId('orejime-banner');
 	}
 
 	get learnMoreBannerButton() {
-		return this.locator('.orejime-Banner-learnMoreButton');
+		return this.page.getByTestId('orejime-banner-configure');
 	}
 
 	get firstFocusableElementFromBanner() {
-		return this.locator('.orejime-Banner :is(a, button)').first();
+		return this.banner.locator(':is(a, button)').first();
 	}
 
 	get modal() {
-		return this.locator('.orejime-Modal');
+		return this.page.getByTestId('orejime-modal');
 	}
 
 	get closeModalButton() {
-		return this.locator('.orejime-Modal-closeButton');
+		return this.page.getByTestId('orejime-modal-close');
 	}
 
 	get contextualNotice() {
-		return this.locator('.orejime-ContextualNotice');
+		return this.page.getByTestId('orejime-contextual-notice');
 	}
 
 	get contextualNoticePlaceholder() {
-		return this.locator('.orejime-ContextualNotice-placeholder');
+		return this.page.getByTestId('orejime-contextual-notice-placeholder');
 	}
 
 	locator(selector: string) {
@@ -69,15 +69,15 @@ export class OrejimePage {
 	}
 
 	purposeCheckbox(purposeId: string) {
-		return this.locator(`#orejime-purpose-${purposeId}`);
+		return this.page.getByTestId(`orejime-purpose-${purposeId}`);
 	}
 
 	async acceptAllFromBanner() {
-		await this.locator('.orejime-Banner-saveButton').click();
+		await this.page.getByTestId('orejime-banner-accept').click();
 	}
 
 	async declineAllFromBanner() {
-		await this.locator('.orejime-Banner-declineButton').click();
+		await this.page.getByTestId('orejime-banner-decline').click();
 	}
 
 	async openModalFromBanner() {
@@ -85,19 +85,19 @@ export class OrejimePage {
 	}
 
 	async enableAllFromModal() {
-		await this.locator('.orejime-PurposeToggles-enableAll').click();
+		await this.page.getByTestId('orejime-modal-enable-all').click();
 	}
 
 	async disableAllFromModal() {
-		await this.locator('.orejime-PurposeToggles-disableAll').click();
+		await this.page.getByTestId('orejime-modal-disable-all').click();
 	}
 
 	async saveFromModal() {
-		await this.locator('.orejime-Modal-saveButton').click();
+		await this.page.getByTestId('orejime-modal-save').click();
 	}
 
 	async closeModalByClickingButton() {
-		await this.locator('.orejime-Modal-closeButton').click();
+		await this.closeModalButton.click();
 	}
 
 	async closeDialogByClickingOutside() {
@@ -116,7 +116,7 @@ export class OrejimePage {
 	}
 
 	async acceptContextualNotice() {
-		await this.locator('.orejime-ContextualNotice-button').click();
+		await this.page.getByTestId('orejime-contextual-notice-accept').click();
 	}
 
 	async expectConsents(consents: Record<string, unknown>) {

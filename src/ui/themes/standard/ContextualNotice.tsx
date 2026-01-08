@@ -25,7 +25,10 @@ const ContextualNotice: ContextualNoticeComponent = ({
 	};
 
 	return (
-		<div className="orejime-ContextualNotice">
+		<div
+			className="orejime-ContextualNotice"
+			data-testid="orejime-contextual-notice"
+		>
 			<TitleTag className="orejime-ContextualNotice-title">
 				{template(t.contextual.title, templateProps)}
 			</TitleTag>
@@ -42,6 +45,7 @@ const ContextualNotice: ContextualNoticeComponent = ({
 						: null
 				}
 				onClick={onAccept}
+				data-testid="orejime-contextual-notice-accept"
 			>
 				{template(t.contextual.accept, templateProps)}
 			</button>

@@ -23,7 +23,7 @@ const Modal: ModalComponent = ({
 			className="orejime-ModalWrapper"
 			onRequestClose={onClose}
 		>
-			<div className="orejime-Modal">
+			<div className="orejime-Modal" data-testid="orejime-modal">
 				<div className="orejime-Modal-header">
 					{isForced ? null : (
 						<button
@@ -31,6 +31,7 @@ const Modal: ModalComponent = ({
 							className="orejime-Modal-closeButton"
 							type="button"
 							onClick={onClose}
+							data-testid="orejime-modal-close"
 						>
 							<Close title={t.modal.close} />
 						</button>
@@ -89,6 +90,7 @@ const Modal: ModalComponent = ({
 						<button
 							className="orejime-Button orejime-Button--save orejime-Modal-saveButton"
 							title={t.modal.saveTitle}
+							data-testid="orejime-modal-save"
 						>
 							{t.modal.save}
 						</button>

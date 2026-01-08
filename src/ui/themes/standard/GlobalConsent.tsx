@@ -16,6 +16,7 @@ const GlobalConsent: GlobalConsentComponent = ({
 				className="orejime-Button orejime-Button--info orejime-PurposeToggles-button orejime-PurposeToggles-enableAll"
 				aria-disabled={isEnabled}
 				onClick={acceptAll}
+				data-testid="orejime-modal-enable-all"
 			>
 				{t.modal.acceptAll}
 			</button>
@@ -25,6 +26,7 @@ const GlobalConsent: GlobalConsentComponent = ({
 				className="orejime-Button orejime-Button--info orejime-PurposeToggles-button orejime-PurposeToggles-disableAll"
 				aria-disabled={isDisabled}
 				onClick={declineAll}
+				data-testid="orejime-modal-disable-all"
 			>
 				{t.modal.declineAll}
 			</button>

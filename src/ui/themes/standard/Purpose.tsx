@@ -37,6 +37,7 @@ const Purpose: PurposeComponent = ({
 				onChange={(event) => {
 					onChange((event.target as HTMLInputElement).checked);
 				}}
+				data-testid={domId}
 			/>
 
 			<label

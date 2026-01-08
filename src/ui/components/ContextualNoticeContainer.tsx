@@ -66,6 +66,7 @@ const ContextualNoticeContainer = ({
 					onFocusOut={() => {
 						setIsBeingDisabled(false);
 					}}
+					data-testid="orejime-contextual-notice-placeholder"
 				/>
 			) : null}
 		</div>

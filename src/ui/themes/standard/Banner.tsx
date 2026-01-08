@@ -20,7 +20,12 @@ const Banner: BannerComponent = ({
 	useNonObscuringElement(ref);
 
 	return (
-		<div aria-hidden={isHidden} className="orejime-Banner" ref={ref}>
+		<div
+			aria-hidden={isHidden}
+			className="orejime-Banner"
+			ref={ref}
+			data-testid="orejime-banner"
+		>
 			<div className="orejime-Banner-body">
 				{logo && (
 					<div className="orejime-Banner-logoContainer">
@@ -75,6 +80,7 @@ const Banner: BannerComponent = ({
 							type="button"
 							title={t.banner.acceptTitle}
 							onClick={onSaveRequest}
+							data-testid="orejime-banner-accept"
 						>
 							{t.banner.accept}
 						</button>
@@ -85,6 +91,7 @@ const Banner: BannerComponent = ({
 							type="button"
 							title={t.banner.declineTitle}
 							onClick={onDeclineRequest}
+							data-testid="orejime-banner-decline"
 						>
 							{t.banner.decline}
 						</button>
@@ -95,6 +102,7 @@ const Banner: BannerComponent = ({
 							className="orejime-Button orejime-Button--info orejime-Banner-learnMoreButton"
 							title={t.banner.configureTitle}
 							onClick={onConfigRequest}
+							data-testid="orejime-banner-configure"
 						>
 							{t.banner.configure}
 						</button>
