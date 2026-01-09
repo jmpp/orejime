@@ -85,10 +85,12 @@ module.exports = {
 	},
 	resolve: {
 		extensions: ['.js', '.ts', '.tsx'],
-		fallback: {
-			fs: false,
+		alias: {
 			// Avoids a warning from uneval.
 			'internal-prop': false
+		},
+		fallback: {
+			fs: false
 		}
 	},
 	optimization: {
