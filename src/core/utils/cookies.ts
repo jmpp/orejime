@@ -1,4 +1,5 @@
 import Cookie from 'js-cookie';
+import {listSubdomains} from './urls';
 
 export type CookieSameSite = 'strict' | 'lax' | 'none';
 
@@ -24,24 +25,15 @@ export const setCookie = (
 	});
 };
 
-export const deleteCookie = (name: string, path?: string, domain?: string) => {
-	if (domain) {
+export const deleteCookie = (name: string, path = '/', domain?: string) => {
+	// If no domain is specified, we try deleting the cookie
+	// on the current domain or any of its subdomains.
+	const domains = domain ? [domain] : listSubdomains(location.hostname);
+
+	domains.forEach((domain) => {
 		Cookie.remove(name, {
 			path,
 			domain
 		});
-
-		return;
-	}
-
-	// if domain is not defined, try to delete cookie on multiple default domains
-	Cookie.remove(name, {
-		path,
-		domain: location.hostname
-	});
-
-	Cookie.remove(name, {
-		path,
-		domain: location.hostname.split('.').slice(-2).join('.')
 	});
 };

@@ -255,6 +255,14 @@ test.describe('Orejime', () => {
 		const position2 = await orejimePage.banner.boundingBox();
 		await expect(position2).toEqual(initalPosition);
 	});
+
+	test('should clear consents', async () => {
+		await orejimePage.expectUndefinedConsents();
+		await orejimePage.acceptAllFromManager();
+		await orejimePage.expectAnyConsents();
+		await orejimePage.clearConsents();
+		await orejimePage.expectUndefinedConsents();
+	});
 });
 
 test.describe('Orejime with forced banner', () => {
