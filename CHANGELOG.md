@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 3.1.0
+
+- feature: Link to the privacy policy in contextual consent notices
+  (https://github.com/boscop-fr/orejime/pull/137)
+- fix: End-to-end tests on CI (https://github.com/boscop-fr/orejime/pull/146)
+- fix: Cookie deletion (https://github.com/boscop-fr/orejime/pull/145)
+- doc: Local development setup (https://github.com/boscop-fr/orejime/pull/140)
+
 ## 3.0.2
 
 - fix: Removed deprecated file references from package.json
